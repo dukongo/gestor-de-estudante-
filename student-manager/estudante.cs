@@ -30,7 +30,7 @@ namespace student_manager
             if (comando.ExecuteNonQuery() == 1)
             {
                 meuBamcoDeDados.Fecharconexao();
-                return true
+                return true;
             }
             else
             {
