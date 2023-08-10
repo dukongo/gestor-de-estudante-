@@ -10,12 +10,12 @@ namespace student_manager
 {
     internal class estudante
     {
-        MEU_BD bancoDeDados = new MEU_BD();
+        MEU_BD meubancoDeDados = new MEU_BD();
 
         public bool inserirEstudante(string nome, string sobrenome, DateTime nascimento, string telefone, string genero, string endereco,
             MemoryStream foto)
         {
-            MySqlCommand comando = new MySqlCommand("INSERT INTO `estudantes`(`id`, `nome`, `sobrenome`, `nascimento`, `genero`, `telefone`, `endereco`, `foto`) VALUES (@nm,@snm,@nsc,@gen,@tel,@end,@ft) ", meuBancoDeDados.getConexao);
+            MySqlCommand comando = new MySqlCommand("INSERT INTO `estudantes`(`id`, `nome`, `sobrenome`, `nascimento`, `genero`, `telefone`, `endereco`, `foto`) VALUES (@nm,@snm,@nsc,@gen,@tel,@end,@ft) ", meubancoDeDados.getConexao);
 
             comando.Parameters.Add("@nm", MySqlDbType.VarChar).Value = nome;
             comando.Parameters.Add("@snm", MySqlDbType.VarChar).Value = sobrenome;
@@ -26,15 +26,15 @@ namespace student_manager
             comando.Parameters.Add("@end", MySqlDbType.Text).Value = endereco;
             comando.Parameters.Add("@ft", MySqlDbType.LongBlob).Value = foto.ToArray();
 
-            meuBancoDeDados.abrirConexao();
+            meubancoDeDados.abrirConexao();
             if (comando.ExecuteNonQuery() == 1)
             {
-                meuBamcoDeDados.Fecharconexao();
+                meubancoDeDados.fecharConexao();
                 return true;
             }
             else
             {
-                meuBancoDeDados.fecharConexao();
+                meubancoDeDados.fecharConexao();
                 return false;
             }
 
